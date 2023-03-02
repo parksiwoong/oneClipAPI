@@ -31,7 +31,7 @@ public class UserJoinController {
     @Resource(name = "userJoinService")
     UserJoinService service;
 
-    @RequestMapping("/memberGetInsert")
+        @RequestMapping("/memberGetInsert")
     public String _userGetJoin(){
         return "/dev/a/a01/userJoin";
     }
