@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            window.onload = function (){
+                var test1 = new Vue({
+                    el : '#test1',
+                    data : {
+                        message : '첫번째 Vue 입니다.'
+                    }
+                })
+                var test2 = new Vue({
+                    el : '.test2',
+                    data : {
+                        message : '첫번째 Vue 입니다.'
+                    }
+                })
+                var test3 = new Vue({
+                    el : '.test3',
+                    data : {
+                        message : '첫번째 Vue 입니다.',
+                        str3 : '문자열' ,
+                        array3 : [10, 20, 30],
+                        object3 : {
+                                    a1 : 'a1문자열',
+                                    a2 : 'a2문자열'
+                                }
+                    }
+                })
+                console.log(test1.message);
+                console.log(test2.$data)
+                console.log(test3.$data.array3)
+
+                var test4 = new Vue({
+                    el : '#test4',
+                    data : {
+                        name : '홍길동',
+                        age : 30
+                    },
+                    methods : {
+                        user_info : function(){
+                            return '이름은 ' + this.name + '이고 나이는' + this.age
+                        }
+                    }
+                })
+            }
+        </script>
+        </head>
+        <div id="test1">
+            <h3>{{message}}</h3>
+            <h3></h3>
+            <h3></h3>
+        </div>
+        <div class="test3">
+            <h3>{{message}}</h3>
+            <h3>{{message}}</h3>
+        </div>
+        <div class="test2">
+            <h3>{{message}}</h3>
+        </div>
+        <div id="test4">
+            <h3>{{user_info()}}</h3>
+        </div>
+    </body>
+</html>
