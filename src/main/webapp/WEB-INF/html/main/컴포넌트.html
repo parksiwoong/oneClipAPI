@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+      Vue.component('component1', {
+        template : '<div>'
+                  +'<h3>첫 번째 h3 태그입니다. </h3>'
+                  +'<h3>첫 번째 h3 태그입니다. </h3>'
+                  +'</div>'
+      })
+      //id 가 vue객체인 아이를 만들어줘야함 그러지않으면 컴포넌트 적용이 되지않음
+      window.onload =function () {
+            var vm1 = new Vue({
+              el: '#test1'
+            })
+            var vm2 = new Vue({
+              el: '#test2',
+                components : {
+                    'component2' : {
+                        template : '<h3>네번째 h3 태그입니다.</h3>'
+                    },
+                    'component3' : {
+                        template : '<h3>다섯번째 h3 태그입니다.</h3>'
+                    }
+                }
+            })
+          var a1 = 0
+          var test5 = new Vue({
+              el : '#test5'
+              ,components : {
+                  template1 :'<h1>6번째 태그입니다.</h1>'
+              },
+              data : function (){
+                  if(a1 == 0){
+                      return {
+                          view1 : 'component5'
+                      }
+                  }else {
+                     return { view1 : 'component2'}
+                  }
+              }
+          })
+        }
+      Vue.component('data_component' , {
+          template : '<dev>' +
+              '<h3>다섯번째 h3 태그입니다.</h3>' +
+              '<h1>{{a1}}</h1>' +     //첨에 정의가 안돼 있어서 함수로 하나 만들어줘야함
+              '<h2>{{test_method1()}}</h2>' +     //첨에 정의가 안돼 있어서 함수로 하나 만들어줘야함
+              '</dev>',
+          data : function (){
+              rtn_obj = {
+                  a1 : '문자열1'
+                  ,a2 : '문자열2'
+              }
+              return rtn_obj
+          },
+          metohodes : {
+              test_method1 : function(){
+                  return '메서드 호출'
+              }
+          }
+      })
+
+    </script>
+  </head>
+  <body>
+    <div id="test1">
+      <component1></component1>
+    </div>
+    <div id="test2">
+        <component1></component1>
+        <component2></component2>
+    </div>
+    <div id="test5">
+        <data_component></data_component>
+        <div>
+            <component v-bind:is="view1"></component>
+        </div>
+    </div>
+  <div>
+      <
+  </div>
+  </body>
+</html>

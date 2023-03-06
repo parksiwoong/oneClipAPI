@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        window.onload = function(){
+            var test1 = Vue({
+                el : '#test1',
+                data : {
+                    a1 : '문자열1',
+                    a2 : '문자열2',
+                    // 이걸 호출하면 정말로 <h3>문자열3</h3> 이렇게 문자열로 나옴 이걸 텍스트로 인식하게 하려면 v-html 로 바인딩을 해야함
+                    a3 : '<h3>문자열3</h3>',
+                    a4 : '@/../../../../resources/static/img/bill.jpg,
+                    a5 : 200,
+                    a6 : 300
+                }
+            })
+        }
+    </script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="test1">
+        <h3>{{a1}}</h3>
+        <h3>{{a3}}</h3>
+        <div v-html='a3'></div>
+        <!-- 이런식으로 불러오면 액박이 뜸 바인딩을 해야함-->
+        <img src="{{a4}}"/>
+        <!--나중에 서버로 부터 이런식으로 받아 올 수 있음 -->
+        <img v-bind:src='a4' v-bind:width="a5"  v-bind:height="a6"/>
+
+    </div>
+</body>
+</html>
