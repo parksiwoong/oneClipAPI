@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    window.onload = function(){
+
+      var vm1 = new Vue({
+    //     el : '#test1',  // 마운트 함수를 이용해서도 가능함. 41번줄
+        data : {
+          a1 : 100
+        },
+        //크리에이트 호출된 후에는 뷰객체가 가지고 있는 맴버변수들을 사용하는것이 가능함
+        //Vue 객체가 관리할 요소들이 만들어지기 전에 호출 되는 경우
+        beforeCreate : function(){
+          console.log('Vue 객체가 관리할 요소들이 만들어 지기전입니다. ')
+          console.log('al : ' + this.a1)
+        },
+        //Vue 객체가 관리할 요소들이 만들어진 후 호출 되는 경우
+        created : function (){
+          console.log('Vue 객체가 관리할 요소들이 만들어 진 후 입니다.')
+          console.log('al : ' + this.a1)
+        },
+
+
+        beforeMount : function(){
+          console.log('Vue 객체가 관리할 태그가 할당 되기 전입니다. ')
+        },
+        methoded : function (){
+          console.log('Vue 객체가 관리할 태그가 할당 된 이후 입니다. ')
+        },
+        updateed : function (){
+            console.log('관리하고 있는 html요소 내부가 변경된 후입니다.')
+        },
+        beforeDestory : function(){
+          console.log('Vue 객체의 기능이 소멸되기 전입니다. ')
+        },
+        destroyed : function(){
+          console.log('Vue 객체의 기능이 소멸된 후입니다. ')
+        },
+        methods : {
+          //이 함수가 호출되면 변경됨
+          setValue : function (){
+            this.a1 = 200
+          }
+        }
+
+      })
+      //아이디가 test1인 vm1객체에다가 마운트하겠다.
+      vm1.$mount('#test1')
+      // 뷰 객체에 마운트된 태그를 관리하는 요소를 소멸시킨다. 다시는 태그객체를 관리 할 수 없게 된다.
+      vm1.$destroy()
+      // 뷰 객체에 태그를 할당한다.
+      vm1.$mount('test1')
+  }
+  </script>
+    <title>Title</title>
+</head>
+<body>
+  <div id="test1">
+    <h3>{{a1}}</h3>
+    <button type="button" v-on:click='setValue'>값 변경</button>
+  </div>
+
+</body>
+</html>

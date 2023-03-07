@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    window.onload = function (){
+      var vm1 = new Vue({
+        el : '#test1',  //아이디에 들어간 엘리먼트객체들을 이 뷰객체가 관리를 하게됨
+          data : {
+            a1 : '',
+            a2 : ''
+          },
+        watch : {
+          //a1를 동일하게 함수를 만들면 자동으로 변경이 됨
+          // 즉 지정해놓은 데이터객체가 변경이 되면 그 변수의값의 변화를 감지를해서 지정해서 호출이 되는 개념
+          a1 : function(newVal, oldVal){
+            console.log('새로운 값 : '+ newVal + ", 이전 값 : " + oldVal)
+          },
+          //변수 a2를 감시하는 watch 설정
+          a2 : function (newVal, oldVal){
+            console.log('새로운 값 2: '+ newVal + ", 이전 값 2: " + oldVal)
+          }
+        }
+      })
+    }
+  </script>
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="test1">
+      <!--이 인풋은 관리하는 뷰 객체에 값이 들어가게 된다 .-->
+      input1 : <input type="text" v-model="a1"/><br/>
+      input2 : <input type="text" v-model="a2"/><br/>
+      <h3>{{a1}}</h3>
+      <h3>{{a2}}</h3>
+    </div>
+  </body>
+</html>
