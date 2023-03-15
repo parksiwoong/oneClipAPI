@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    watch는 변수 하나를 감시하는 요소이고
+    computed는 여러 변수 변화를 감지할 수 있다.
+    이를 이용해 watch로 처리하는 다수의 코드를 comlputed하나로 통합할 수도 있다.
+  -->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+  window.onload = function(){
+    var vm1 = new Vue({
+      el : '#test1',
+      data: {
+        data1 : 'aaa',
+        data2 : 'bbb',
+        result1 : '',
+        result2 : ''
+      },
+      //data1의 값을 감시 하겠다. 실시간으로 글쓰는걸 감지가능함
+      watch : {
+        data1 : function(){
+          this.result1 = 'data1 : ' + this.data1
+        },
+        data2 : function(){
+          this.result1 = 'data1 : ' + this.data1 + 'data2 : ' + this.data2
+        }
+      },
+      /*와치는 하나하나씩 감지하지만 컴퓨티드는 모두를 감시하고 해당하는것이 감지가 되면 그때 바로 변환한다 */
+      computed: {
+        result2 : function(){
+          //data1 과 data2 모두 변화시켜줌
+          return 'data1: ' + this.data1 + ', data2 : ' + this.data2
+        }
+      }
+    })
+  }
+</script>
+  <body>
+    <div id="test1">
+        <h3>data1: {{data1}}</h3>
+        <h3>data2: {{data2}}</h3>
+      <!--data1 에  'aaa' 는 v-model="data1의 벨루값이 되고 또 입력이 되면 data1에 벨루값으로 들어가게 된다. -->
+        <input type="text" v-model="data1"><br/>
+        <input type="text" v-model="data2"><br/>
+        <div>{{result1}}</div>
+    </div>
+  </body>
+</html>
