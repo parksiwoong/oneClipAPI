@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <title>Title</title>
+  </head>
+  <!--
+    v-bind
+       Vue.js 에서 HTML을 구성하는 요소에 값을 설정할 때 사용하는 지시자이다.
+       속성, css,form 등 다양한 요소들에 값을 설정할 수 있다.
+
+     속성셋팅
+      HTML태그의 속성을 셋팅할때는 v-bind: 속성명
+      을 사용한다.
+      v-bind는 생략이 가능하다.
+  -->
+  <script>
+    window.onload = function(){
+      var vm1 = Vue({
+        el: '#test1',
+        data : {
+          str1 : '문자열 입니다.',
+          link : 'https://kr.vuejs.org',
+          imageName : 'image/log.png',
+          imageWidth : 'image/log.png'
+        },
+        methods : {
+          setImageWidth : function(){
+            this.imageWidth = '400'
+          },
+          resetImageWidth : function(){
+            this.imageWidth = '200'
+          }
+        }
+      })
+    }
+  </script>
+  <body>
+    <div id="test1">
+        <h3>{{test1}}</h3>
+      <!--이렇게 쓰면 그냥 문자열로 들어오게 됨 그래서 바인딩 기법을 사용해야함-->
+      <a href="{{link}}">link2</a>
+      <!-- 이런식으로 -->
+      <a v-bind:href='link'>link2</a>
+      <!-- v-bind 속성값은 생략 가능함 -->
+      <a :href='link'>link2</a>
+        <!--마우스 갖다 댔을때 400 마우스 땔때 200 으로 사이즈 변경 -->
+      <img :srg="imageName" :width="imageWidth"
+           v-on:mouseenter="setImageWidth" v-on:mouseleave="resetImageWidth"/>
+    </div>
+  </body>
+</html>
