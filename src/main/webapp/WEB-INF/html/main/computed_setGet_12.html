@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <title>Title</title>
+  </head>
+  <!--
+    get: computed 로 지정된 값을 사용할때 호출된다
+    set: computed에 값을 설정할 때 호출된다.
+  -->
+  <script>
+    window.onload = function (){
+      var vm1 = new Vue({
+        el : '#test1',
+        data : {
+          data1 : 'aaaa',
+          data2 : 'bbbb',
+        },
+        //컴퓨티드를 사용하면 어떠한값을 특별한 처리가 가능하다.
+        computed : {
+          // input 에 적은게 get에 셋팅돼 다시 리턴해서 보여줌
+          data3 : {
+            get : function(){
+              return this.data1 + ', 'this.data2
+            },
+            //만약 data3 input에 적으면 data1과 data2에 set으로 적어진다.
+            set : function(newValue){
+              var list = newValue.split(',')
+              if(list.length >=2 ){
+                this.data1 = list[0]
+                this.data2 = list[1]
+              }
+            }
+          }
+        }
+      })
+    }
+  </script>
+  <body>
+    <div id="test1">
+        <input type="text" v-model="data1"/><br/>
+        <input type="text" v-model="data2"/><br/>
+        <input type="text" v-model="data3"/><br/>
+    </div>
+  </body>
+</html>
