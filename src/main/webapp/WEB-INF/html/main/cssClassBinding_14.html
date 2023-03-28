@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <title>Title</title>
+  </head>
+  <!--
+    css클래스 바인딩
+      HTML 의 class 속성에 css 클래스를 바인딩할 수 있다.
+      상황에 따라 유동적으로 바인딩을할 수 있으며 이를 이용해 다양한 효과를 구현하는것도 가능하다.
+  -->
+  <style>
+    .css1 {
+      background-color : yellow;
+    }
+    .css2{
+      color : red;
+    }
+    .css3{
+      background-color : red;
+    }
+    .css4{
+      color : yellow;
+    }
+  </style>
+  <script>
+    window.onload = function(){
+      var vm1 = new Vue({
+        el : '#test1',
+        data: {
+          css1Name : 'css1',
+          css2Name : 'css2',
+          isCss1 : false,
+          isCss2 : false
+        },
+        methods : {
+          setCss1 : function(){
+            this.css1Name = 'css3'
+            this.css2Name = 'css4'
+          },
+
+          setCss2 : function(){
+            this.isCss1 = true
+            this.isCss2 = true
+          },
+          removeCss2 : function(){
+            this.isCss1 = false
+            this.isCss2 = false
+          }
+        }
+      })
+    }
+  </script>
+  <body>
+    <div id="test1">
+      <h3 class="css1 css2">문자열</h3>
+      <!--이렇게하면 css1 을 찾을 수 없음-->
+      <h3 v-bind:class="[css1]">문자열</h3>
+      <!--Vue에 넣어서 이런식으로 바인딩은 가능함 -->
+      <h3 v-bind:class="css1Name">문자열</h3>
+      <button type="button" v-on:click="setCss1" >css1 변경</button>
+      <!-- isCss1를 안넣고 css1만 넣으면 찾을 수 없다고 나옴 하지만 isCss1을 찾더라도 false 면 반응하지않음
+      true로 바꿔줘야 적용이 됨 -->
+      <h3 v-bind:class = '{css1:isCss1}'>문자열</h3>
+      <!-- 버튼을 on/off 설정 가능함 -->
+      <button type="button" v-on:click="setCss2">CSS 적용 설정</button>
+      <button type="button" v-on:click="removeCss2">CSS false 설정</button>
+      <!--삼항도 가능함 true면 css1Name , false면 "" -->
+      <h3 v-bind:class='[isCss1 ? css1Name : "", isCss2 ? css2Name : ""]'></h3>
+    </div>
+  </body>
+</html>
