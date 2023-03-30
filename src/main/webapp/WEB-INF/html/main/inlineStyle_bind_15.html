@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <title>Title</title>
+  </head>
+  <!-- 동적으로 변환을 시키기 위한 강의 -->
+  <script>
+    window.onload= function(){
+      var vm1 = new Vue({
+        el : '#test1',
+        data : {
+          bgcolorValue : 'red',
+          colorValue : 'yellow'
+        },
+        methods : {
+          setInsetInlineStyle : function(){
+            this.bgcolorValue = 'yellow'
+            this.colorValue = 'red'
+            styleValue : {
+              backgroundColor : 'red'
+                      color : 'yellow'
+            }
+          },
+          setStyleValue : function(){
+           this.styleValue = {
+                backgroundColor : 'yellow',
+                color : 'red'
+           }
+          }
+        }
+      })
+    }
+  </script>
+  <body>
+    <div id="test1">
+      <h3 style="background-color: red; color:yellow;">문자열</h3>
+      <h3 v-bind:style="{backgroundColor:bgcolorValue, color:colorValue}">문자열</h3>
+      <button type="button" v-on:click="setInsetInlineStyle">inline css 변경</button>
+      <!--한꺼번에 변경 방법-->
+      <button type="button" v-on:click="setStyleValue">객체 변경</button>
+    </div>
+  </body>
+</html>
