@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <title>Title</title>
+  </head>
+  <!--
+    form 바인딩
+      html에서 사용하는 다양한 입력 요소들에 대해 바인딩이 가능하다.
+      사용자가 값을 입력하면 지정된 변수에 값을 자동으로 설정할 수 있다.
+      v-model: 사용자가 입력한 값을 바인딩할 변수를 설정한다.
+      lazy: 입력을 완료 하였을때(포커스를 잃었을때) 변수에 바인딩된다.
+      number ; 사용자가 입력한 값이 숫자로만 구성되어 있을때 경우 숫자로 변환하여 바인딩한다.
+      trim: 사용자가 입력한 값 좌우에 공백이 있을경우 공백을 제거하고 바인딩한다.
+  -->
+  <script>
+      window.onload = function(){
+          var vm1 = new Vue({
+              el : '#test1',
+           data: {
+                    /*초기값 이라는 최초의 text값이 들어가있음*/
+                    input1 : '초기값',
+                    input2 : '',
+               /*체크박스*/
+                    input3 : true ,
+                    input4 : false,
+               /* radio*/
+                    input9 : '',
+               /*select */
+               input10 : '',
+               /*lazy*/
+               input11 : ''
+               },
+              input12: '',
+              /*타입체크*/
+              methods: {
+                  checkType: function () {
+                      alert(typeof (this.input12))
+                  }
+              },
+              input13:''
+          })
+      }
+  </script>
+  <body>
+    <div id="test1">
+        <h3>Input Type Text</h3>
+        <!-- 문자열과 동일한 곳에 세팅이 됨 -->
+        <input type="text" v-model="input1">
+        <!--그리고 input1 에서 가지고와서 보여줌 -->
+        <h3>Input1 : {{input1}}</h3>
+        <pre>input : {{input2}}</pre>
+        <!--체크되면 true 체크해제 false -->
+        <input type="checkbox" v-model="input3"/>
+        <input type="checkbox" v-model="input4"/>
+        <hr/>
+        <!--라디오는 벨루값을 설정해줘야함-->
+        <h3>radio</h3>
+        <input type="radio" v-model="input9" value="r1"/>
+        <input type="radio" v-model="input9"  value="r2"/>
+        <input type="radio" v-model="input9"  value="r3"/>
+        <h3>{{input9}}</h3>
+        <hr/>
+        <h3>select</h3>
+        <select v-model="input10">
+            <option value="item1">항목1</option>
+            <option value="item2">항목2</option>
+            <option value="item3">항목3</option>
+            <option value="item3">항목4</option>
+        </select>
+        <h3>{{input10}}</h3>
+
+        <!--레이지는 포커스를 잃었을대 바인딩을 하게 됨-->
+        <input type="text" v-model.lazy="input11">
+        <input type="text" v-model="input12 ">
+        <button type="button" v-on:click="checkType"></button>
+
+        <input type="text" v-model="input13"/>
+        <pre>[{{input13}}]</pre>
+    </div>
+  </body>
+</html>
