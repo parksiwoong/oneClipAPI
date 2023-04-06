@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<style>
+    .box{
+        width : 200px;
+        height: 200px;
+        border: 1px solid black;
+    }
+</style>
+<script>
+    window.onload=function (){
+        var vm1 =new Vue({
+            el : '#test1'
+        ,
+            methods :{
+                method1:function (){
+                    alert('method1')
+                },
+                method2:function(){
+                    alert('method2')
+                }
+            }
+        })
+    }
+</script>
+<body>
+    <div id="test1">
+        <!--자식이 처리가 끝나면 부모도 처리를 하게 된다 그래서 method1 ,method2 2번 뜸-->
+        <div @click="method1" class="box">
+            <button type="button" @click="method2">버튼</button>
+            <!--하지만 스탑을 붙이면 클릭 된거만 나옴-->
+            <button type="button" @click.stop="method2">버튼</button>
+        </div>
+        <!--prevent 를 붙이면 이벤트가 무시됨 -->
+        <a @click.prevent href="http://localhost"></a>
+        <!--capture 안에 들어가는 div에 전체에서 캡처부터 이벤트 발생함 -->
+        <div @click.capture="method1">
+            <button @click="method2"></button>
+        </div>
+        <!-- self는 자기안에 들어있는 어떤거를 누르더라도 method1 만 나옴 -->
+        <div @click.self="method1">
+            <button @click="method2"></button>
+        </div>
+        <!--once는 이벤트발생시 최초한번만 발생후 그후엔 발생안함 -->
+        <div @click.once="method1">
+            <button @click="method2"></button>
+        </div>
+    </div>
+</body>
+</html>
