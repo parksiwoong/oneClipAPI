@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<!--
+  v-if
+  HTML 태그 랜더링 할때 조건을 주고자 할때 사용
+
+  v-show는 메뉴같은곳에 즉 자주사용하는곳에 많이드 ㄹ사용함
+-->
+  <script>
+    window.onload = function (){
+      var vm1 = new Vue({
+        el : '#test1',
+        data : {
+          a1 : 100,
+          a2 : 100,
+          a4 : 100,
+          a5 : 100
+        },
+        methods: {
+          setA1 : function (){
+            if(this.a1 == 100){
+              this.a1 = 200
+            }else {
+              this.a1 = 100
+            }
+          },
+          setA2 : function(){
+            if(this.a1 == 100){
+                this.a2 = 200
+            }else {
+              this.a2 = 100
+            }
+          },
+          setA4 : function(){
+            if(this.a4 ==100){
+              this.a4 = 200
+            }else {
+              this.a4 = 100
+            }
+          },
+          //else-if
+          setA5 : function (){
+            if(this.a5 == 100){
+              this.a5 = 200
+            }else if(this.a5 == 200){
+              this.a5 = 300
+            }else{
+              this.a5 = 100
+            }
+          }
+        }
+      })
+    }
+  </script>
+  <body>
+
+    <div id="test1">
+      <h3 v-if="a1 == 100">a1은 100입니다.</h3> <!-- 참 -->
+      <h3 v-if="a1 == 200">a1은 100입니다.</h3> <!--거짓 (랜더링안됨) -->
+      <button type="button" @click="setA1">a1 세팅</button>
+
+      <hr/>
+      <h3 v-if="a2 == 100">a2는 100입니다.</h3>
+      <button type="button" @click="setA2">a2 세팅</button>
+
+      <template v-if="a4 == 100">
+        <h3>a2는 100입니다.</h3>
+        <h3>a2는 100입니다.</h3>
+        <h3>a2는 100입니다.</h3>
+      </template>
+      <template v-else>
+        <h3>a2는 100입니다.</h3>
+        <h3>a2는 100입니다.</h3>
+        <h3>a2는 100입니다.</h3>
+      </template>
+      <button @click="setA4"></button>
+    </div>
+
+    <template v-if="a5 ==100">
+      <h3>a5는 100입니다.</h3>
+    </template>
+  <template v-else-if="a5 == 200">
+    <h3>200입니다.</h3>
+    <!--키를 주면 input끼리도 다른 걸로 인식함 -->
+    <input type="text" key="data1"/>
+  </template>
+
+    <!--v-show 같은경우엔 무조건 랜더링이 되지만 false 일땐 디스플레이:넌이 된다 -->
+    <h3 v-show="a7 ==100 "></h3>
+    <h3 v-show="a7 !=100 "></h3>
+  <button @click="setA5"></button>
+  </body>
+</html>
