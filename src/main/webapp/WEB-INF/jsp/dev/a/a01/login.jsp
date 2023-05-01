@@ -9,9 +9,8 @@
         <script src="https://kit.fontawesome.com/946d94826f.js" crossorigin="anonymous"></script>
         <!--jqeury라이브러리-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <link rel="stylesheet"  type="text/css" href="${path}/css/a/login_style.css">
-        <script type="text/javascript" src="${path}/js/dev/common/custom.js"></script>
-
+        <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath}/css/a/login_style.css">
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/dev/common/custom.js"></script>
     <%--    <$=request.getContextPath()%>/resources/ --%>
         <title>login</title>
     </head>

@@ -1,9 +1,7 @@
 package dev.a.a01.userJoin;
 
-import dev.a.a01.userJoin.impl.UserJoinServiceImpl;
-import org.springframework.http.HttpRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,15 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * 회원 가입/탈퇴 관련
  *
  * */
-
+@Slf4j
 @Controller
 @RequestMapping("/userJoin")
 public class UserJoinController {
@@ -31,7 +26,7 @@ public class UserJoinController {
     @Resource(name = "userJoinService")
     UserJoinService service;
 
-        @RequestMapping("/memberGetInsert")
+    @RequestMapping("/memberGetInsert")
     public String _userGetJoin(){
         return "/dev/a/a01/userJoin";
     }
@@ -59,8 +54,8 @@ public class UserJoinController {
         int resultCnt = 1;
         ModelAndView mav = new ModelAndView();
 
-        System.out.println("jade - vo: " + vo);
-        System.out.println("jade - request: " + request);
+        log.info("jade - vo: " + vo);
+        log.info("jade - request: " + request);
         //로그인 저장
         String instUserSn = service.userInsert(vo);
      //   mav.setViewName("/dev/a/a01/memberInsert");

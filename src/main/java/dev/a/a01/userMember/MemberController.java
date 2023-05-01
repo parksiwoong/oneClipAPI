@@ -1,6 +1,10 @@
 package dev.a.a01.userMember;
 
 import dev.a.a01.userMember.impl.MemberServiceImpl;
+import jdk.internal.instrumentation.Logger;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.juli.logging.LogFactory;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,20 +20,19 @@ import java.util.Map;
 /**
 * 로그인 관련
 * */
+@Slf4j
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-
     @Resource(name = "memberService")
     MemberServiceImpl service;
 
     /**
      * new로그인
-     * @param map
-     * @param vo
      * */
     @RequestMapping("/userLogin")
     public String _memberLogin(){
+        log.info("/userLogin ::: in");
         return "/dev/a/a01/login";
     }
 
@@ -41,7 +44,7 @@ public class MemberController {
     @RequestMapping("/user")
     public ModelAndView _members(Map map, MemberVo vo) throws Exception {
         ModelAndView mv = new ModelAndView();
-        System.out.println("=====> @ Controller");
+        log.info("=====> @ Controller");
         mv.addObject(service.test(vo));
         mv.setViewName("/dev/a/a01/login");
         return mv;
