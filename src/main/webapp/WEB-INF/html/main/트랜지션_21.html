@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <title>Title</title>
+    <!-- HTML 태그에 대한 애니메이션을 구현할때 css 를 손쉽게 등록할 수 있는 기능을 지원한다.-->
+  </head>
+  <script>
+      window.onload = function (){
+          var vm1 = new Vue({
+              el : '#test1',
+              data : {
+                  show1 : true
+              },
+              methods : {
+                setShow : function (){
+                    if(this.show1 == true){
+                        this.show = false
+                    }else {
+                        this.show = true
+                    }
+                }
+              }
+          })
+      }
+  </script>
+  <body>
+ <div id="test1">
+
+ </div>
+  </body>
+</html>
